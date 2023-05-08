@@ -16,6 +16,8 @@
 #include "protocolCraft/BinaryReadWrite.hpp"
 #include "protocolCraft/MessageFactory.hpp"
 
+#include "protocolCraft/Messages/Play/Clientbound/ClientboundCustomPayloadPacket.hpp"
+
 namespace Botcraft
 {
     NetworkManager::NetworkManager(const std::string& address, const std::string& login, const bool force_microfost_auth)
@@ -349,7 +351,20 @@ namespace Botcraft
 
         const int packet_id = ProtocolCraft::ReadData<ProtocolCraft::VarInt>(packet_iterator, length);
 
-        std::shared_ptr<ProtocolCraft::Message> msg = ProtocolCraft::CreateClientboundMessage(state, packet_id);
+        std::shared_ptr<ProtocolCraft::Message> msg;
+
+        if (packet_id == ProtocolCraft::ClientboundCustomPayloadPacket::packet_id) {
+            // peek to get identifier
+            ProtocolCraft::ReadIterator temp_iterator = packet_iterator;
+            size_t temp_length = length;
+            std::string identifier = ProtocolCraft::ReadData<std::string>(temp_iterator, temp_length);
+            // LOG_INFO("Client Bound Custom Payload Identifier: " << identifier);
+
+            msg = ProtocolCraft::CreateCustomClientboundMessage(state, identifier);
+        }
+        else {
+            msg = ProtocolCraft::CreateClientboundMessage(state, packet_id);
+        }
 
         if (msg)
         {

@@ -215,6 +215,12 @@ set(protocolCraft_PUBLIC_HDR
     include/protocolCraft/Messages/Play/Serverbound/ServerboundUseItemOnPacket.hpp
     include/protocolCraft/Messages/Play/Serverbound/ServerboundUseItemPacket.hpp
 
+    include/protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftBrandPacket.hpp
+    include/protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftRegisterPacket.hpp
+    include/protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORInitializePacket.hpp
+
+    include/protocolCraft/Messages/Play/Serverbound/CustomPayload/Minecraft/ServerboundMinecraftBrandPacket.hpp
+    include/protocolCraft/Messages/Play/Serverbound/CustomPayload/Minecraft/ServerboundMinecraftRegisterPacket.hpp
 
     include/protocolCraft/Messages/Status/Clientbound/ClientboundPongResponsePacket.hpp
     include/protocolCraft/Messages/Status/Clientbound/ClientboundStatusResponsePacket.hpp

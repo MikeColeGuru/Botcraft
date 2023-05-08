@@ -109,6 +109,9 @@
 #include "protocolCraft/Messages/Play/Serverbound/ServerboundChatSessionUpdatePacket.hpp"
 #endif
 
+#include "protocolCraft/Messages/Play/Serverbound/CustomPayload/Minecraft/ServerboundMinecraftBrandPacket.hpp"
+#include "protocolCraft/Messages/Play/Serverbound/CustomPayload/Minecraft/ServerboundMinecraftRegisterPacket.hpp"
+
 namespace ProtocolCraft
 {
     using AllServerboundLoginMessages = std::tuple<
@@ -228,10 +231,29 @@ namespace ProtocolCraft
         ServerboundKeepAlivePacket
     >;
 
+
+    using AllServerboundCustomHandshakeMessages = std::tuple<
+    >;
+
+    using AllServerboundCustomLoginMessages = std::tuple<
+    >;
+
+    using AllServerboundCustomStatusMessages = std::tuple<
+    >;
+
+    using AllServerboundCustomPlayMessages = std::tuple<
+        ServerboundMinecraftBrandPacket,
+        ServerboundMinecraftRegisterPacket
+    >;
+
     using AllServerboundMessages = Internal::tuple_cat_t <
         AllServerboundLoginMessages,
         AllServerboundStatusMessages,
         AllServerboundHandshakeMessages,
-        AllServerboundPlayMessages
+        AllServerboundPlayMessages,
+        AllServerboundCustomLoginMessages,
+        AllServerboundCustomStatusMessages,
+        AllServerboundCustomHandshakeMessages,
+        AllServerboundCustomPlayMessages
     >;
 } //ProtocolCraft

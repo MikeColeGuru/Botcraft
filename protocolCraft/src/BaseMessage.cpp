@@ -141,6 +141,9 @@ namespace ProtocolCraft
     template class BaseMessage<ServerboundChatSessionUpdatePacket>;
 #endif
 
+    template class BaseMessage<ServerboundMinecraftBrandPacket>;
+    template class BaseMessage<ServerboundMinecraftRegisterPacket>;
+
     // Play clientbound
     template class BaseMessage<ClientboundUpdateAdvancementsPacket>;
     template class BaseMessage<ClientboundSetEntityLinkPacket>;
@@ -347,4 +350,9 @@ namespace ProtocolCraft
     template class BaseMessage<ClientboundDamageEventPacket>;
     template class BaseMessage<ClientboundHurtAnimationPacket>;
 #endif
+
+    template class BaseMessage<ClientboundMinecraftBrandPacket>;
+    template class BaseMessage<ClientboundMinecraftRegisterPacket>;
+    template class BaseMessage<ClientboundBBORInitializePacket>;
+    
 }

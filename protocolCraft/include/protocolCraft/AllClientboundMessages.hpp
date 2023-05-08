@@ -219,6 +219,10 @@
 #include "protocolCraft/Messages/Play/Clientbound/ClientboundHurtAnimationPacket.hpp"
 #endif
 
+#include "protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftBrandPacket.hpp"
+#include "protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftRegisterPacket.hpp"
+#include "protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORInitializePacket.hpp"
+
 namespace ProtocolCraft
 {
     using AllClientboundLoginPacket = std::tuple<
@@ -444,9 +448,24 @@ namespace ProtocolCraft
         ClientboundSetCarriedItemPacket
     >;
 
+    using AllClientboundCustomLoginPacket = std::tuple<
+    >;
+
+    using AllClientboundCustomStatusPacket = std::tuple<
+    >;
+
+    using AllClientboundCustomPlayPacket = std::tuple<
+        ClientboundMinecraftBrandPacket,
+        ClientboundMinecraftRegisterPacket,
+        ClientboundBBORInitializePacket
+    >;
+
     using AllClientboundMessages = Internal::tuple_cat_t<
         AllClientboundLoginPacket,
         AllClientboundStatusPacket,
-        AllClientboundPlayPacket
+        AllClientboundPlayPacket,
+        AllClientboundCustomLoginPacket,
+        AllClientboundCustomStatusPacket,
+        AllClientboundCustomPlayPacket
     >;
 } //ProtocolCraft
