@@ -354,5 +354,7 @@ namespace ProtocolCraft
     template class BaseMessage<ClientboundMinecraftBrandPacket>;
     template class BaseMessage<ClientboundMinecraftRegisterPacket>;
     template class BaseMessage<ClientboundBBORInitializePacket>;
+    template class BaseMessage<ClientboundBBORStructureListSyncPacket>;
+    template class BaseMessage<ClientboundBBORAddBoundingBoxPacket>;
     
 }

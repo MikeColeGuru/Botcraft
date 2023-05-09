@@ -219,9 +219,14 @@
 #include "protocolCraft/Messages/Play/Clientbound/ClientboundHurtAnimationPacket.hpp"
 #endif
 
+// Minecraft
 #include "protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftBrandPacket.hpp"
 #include "protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftRegisterPacket.hpp"
+
+// Bounding Box Outline Reloaded
 #include "protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORInitializePacket.hpp"
+#include "protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORStructureListSyncPacket.hpp"
+#include "protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORAddBoundingBoxPacket.hpp"
 
 namespace ProtocolCraft
 {
@@ -457,7 +462,9 @@ namespace ProtocolCraft
     using AllClientboundCustomPlayPacket = std::tuple<
         ClientboundMinecraftBrandPacket,
         ClientboundMinecraftRegisterPacket,
-        ClientboundBBORInitializePacket
+        ClientboundBBORInitializePacket,
+        ClientboundBBORStructureListSyncPacket,
+        ClientboundBBORAddBoundingBoxPacket
     >;
 
     using AllClientboundMessages = Internal::tuple_cat_t<

@@ -1,5 +1,9 @@
 #pragma once
 
+// Bounding Box Outline Reloaded
+// https://github.com/irtimaled/BoundingBoxOutlineReloaded
+// https://www.curseforge.com/minecraft/mc-mods/bounding-box-outline-reloaded
+
 #include "protocolCraft/BaseMessage.hpp"
 
 namespace ProtocolCraft
@@ -64,8 +68,8 @@ namespace ProtocolCraft
 
             output["identifier"] = identifier;
             output["seed"] = seed;
-            output["spawnX"] = spawnX;
-            output["spawnZ"] = spawnZ;
+            output["spawn_x"] = spawnX;
+            output["spawn_z"] = spawnZ;
 
             return output;
         }

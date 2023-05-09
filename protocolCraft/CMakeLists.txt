@@ -1,5 +1,9 @@
 project(protocolCraft)
 
+if (MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+endif (MSVC)
+
 set(protocolCraft_PUBLIC_HDR
     include/protocolCraft/AllClientboundMessages.hpp
     include/protocolCraft/AllMessages.hpp
@@ -218,6 +222,8 @@ set(protocolCraft_PUBLIC_HDR
     include/protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftBrandPacket.hpp
     include/protocolCraft/Messages/Play/Clientbound/CustomPayload/Minecraft/ClientboundMinecraftRegisterPacket.hpp
     include/protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORInitializePacket.hpp
+    include/protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORStructureListSyncPacket.hpp
+    include/protocolCraft/Messages/Play/Clientbound/CustomPayload/BBOR/ClientboundBBORAddBoundingBoxPacket.hpp
 
     include/protocolCraft/Messages/Play/Serverbound/CustomPayload/Minecraft/ServerboundMinecraftBrandPacket.hpp
     include/protocolCraft/Messages/Play/Serverbound/CustomPayload/Minecraft/ServerboundMinecraftRegisterPacket.hpp
@@ -320,6 +326,10 @@ set(protocolCraft_PUBLIC_HDR
     include/protocolCraft/Types/Vibrations/EntityPositionSource.hpp
     include/protocolCraft/Types/Vibrations/PositionSource.hpp
     include/protocolCraft/Types/Vibrations/VibrationPath.hpp
+
+    include/protocolCraft/Types/CustomPayload/BBOR/AbstractBoundingBox.hpp
+    include/protocolCraft/Types/CustomPayload/BBOR/StructureBoundingBox.hpp
+    include/protocolCraft/Types/CustomPayload/BBOR/Coords.hpp
 
     include/protocolCraft/Utilities/GZip.hpp
     include/protocolCraft/Utilities/Json.hpp
