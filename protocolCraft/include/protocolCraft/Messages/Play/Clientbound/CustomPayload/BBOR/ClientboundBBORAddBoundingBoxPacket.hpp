@@ -51,26 +51,26 @@ namespace ProtocolCraft
         {
             ReadData<std::string>(iter, length); // identifier
 
-            data = ReadByteArray(iter, length, length);
+            // data = ReadByteArray(iter, length, length);
 
-            // dimension = ReadData<Identifier>(iter, length);
+            dimension = ReadData<Identifier>(iter, length);
 
-            // key.push_back(ReadBoundingBox(iter, length));
+            key.push_back(ReadBoundingBox(iter, length));
 
-            // while(length > 0) {
-            //     bounding_boxes.push_back(ReadBoundingBox(iter, length));
-            // }
+            while(length > 0) {
+                bounding_boxes.push_back(ReadBoundingBox(iter, length));
+            }
         }
 
         virtual void WriteImpl(WriteContainer& container) const override
         {
             WriteData<std::string>(std::string{identifier}, container);
-            WriteByteArray(data, container);
-            // WriteData<Identifier>(dimension, container);
-            // WriteBoundingBox(key.at(0), container);
-            // for(auto bounding_box : bounding_boxes) {
-            //     WriteBoundingBox(bounding_box, container);
-            // }
+            // WriteByteArray(data, container);
+            WriteData<Identifier>(dimension, container);
+            WriteBoundingBox(key.at(0), container);
+            for(auto bounding_box : bounding_boxes) {
+                WriteBoundingBox(bounding_box, container);
+            }
         }
 
         virtual Json::Value SerializeImpl() const override
@@ -79,32 +79,32 @@ namespace ProtocolCraft
 
             output["identifier"] = identifier;
 
-            output["bytes"] = data;
+            // output["bytes"] = data;
 
-            // output["dimension"] = dimension;
+            output["dimension"] = dimension;
 
-            // if (std::holds_alternative<StructureBoundingBox>(key.at(0))) {
-            //     output["key"] = std::get<StructureBoundingBox>(key.at(0)).Serialize();
-            // }
-            // else {
-            //     output["key"] = nullptr;
-            // }
+            if (std::holds_alternative<StructureBoundingBox>(key.at(0))) {
+                output["key"] = std::get<StructureBoundingBox>(key.at(0)).Serialize();
+            }
+            else {
+                output["key"] = nullptr;
+            }
 
-            // Json::Value boxes;
-            // for(auto bounding_box : bounding_boxes) {
-            //     if (std::holds_alternative<StructureBoundingBox>(bounding_box)) {
-            //         boxes.push_back(std::get<StructureBoundingBox>(bounding_box).Serialize());
-            //     }
-            // }
-            // output["bounding_boxes"] = boxes;
+            Json::Value boxes;
+            for(auto bounding_box : bounding_boxes) {
+                if (std::holds_alternative<StructureBoundingBox>(bounding_box)) {
+                    boxes.push_back(std::get<StructureBoundingBox>(bounding_box).Serialize());
+                }
+            }
+            output["bounding_boxes"] = boxes;
 
             return output;
         }
 
     private:
-        // Identifier dimension;
-        // std::vector<bounding_box_t> key = std::vector<bounding_box_t>(0);
-        // std::vector<bounding_box_t> bounding_boxes = std::vector<bounding_box_t>(0);
-        std::vector<unsigned char> data;
+        Identifier dimension;
+        std::vector<bounding_box_t> key = std::vector<bounding_box_t>(0);
+        std::vector<bounding_box_t> bounding_boxes = std::vector<bounding_box_t>(0);
+        // std::vector<unsigned char> data;
     };
 } //ProtocolCraft
